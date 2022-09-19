@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getListContact, deleteContact } from '../../actions/ContactActions';
+import {getListContact, deleteContact, detailContact} from '../../actions/ContactActions';
 
 export default function ContactList() {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ export default function ContactList() {
         getListContactResult.map((it) => {
           return (
             <p key={it.id}>
-              {it.name} - {it.no} <button onClick={() => dispatch(deleteContact(it.id))}>Delete</button>
+              {it.name} - {it.no} <button onClick={() => dispatch(deleteContact(it.id))}>Delete</button> <button onClick={() => dispatch(detailContact(it))}>Edit</button>
             </p>
           );
         })

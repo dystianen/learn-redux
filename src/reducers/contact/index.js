@@ -1,4 +1,9 @@
-import { GET_LIST_CONTACT, ADD_CONTACT, DELETE_CONTACT } from '../../actions/ContactActions';
+import {
+  GET_LIST_CONTACT,
+  ADD_CONTACT,
+  DELETE_CONTACT,
+  DETAIL_CONTACT, UPDATE_CONTACT
+} from '../../actions/ContactActions';
 
 const initialState = {
   getListContactResult: false,
@@ -12,6 +17,12 @@ const initialState = {
   deleteContactResult: false,
   deleteContactLoading: false,
   deleteContactError: false,
+
+  detailContactResult: false,
+
+  updateContactResult: false,
+  updateContactLoading: false,
+  updateContactError: false,
 };
 
 const contact = (state = initialState, action) => {
@@ -41,6 +52,23 @@ const contact = (state = initialState, action) => {
         deleteContactLoading: action.payload.loading,
         deleteContactError: action.payload.errorMessage,
       };
+
+    case DETAIL_CONTACT:
+      console.log('4. Masuk Reducer', action);
+      return {
+        ...state,
+        detailContactResult: action.payload.data,
+      };
+
+    case UPDATE_CONTACT:
+      console.log('4. Masuk Reducer', action);
+      return {
+        ...state,
+        updateContactResult: action.payload.data,
+        updateContactLoading: action.payload.loading,
+        updateContactError: action.payload.errorMessage,
+      };
+
     default:
       return state;
   }
